@@ -50,6 +50,31 @@ class Firebase {
   }
   // User API
 
-}
+  //add user
+  addUser(data) {
+    this.collection("users").doc(data.user_id).set(data)
+      .then(() => {
+        console.log("New User was successfully added");
+        return true;
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+        return false;
+      })
+  }
 
+  //edit user data
+  editUser(user_id, data) {
+    this.collection("users").doc(user_id).update(data)
+      .then(() => {
+        console.log("User data was successfully changed");
+        return true;
+      })
+      .catch((error) => {
+        console.error("Error editing document: ", error);
+        return false;
+      })
+  }
+}
+ 
 export default Firebase;
