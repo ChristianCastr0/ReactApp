@@ -49,7 +49,7 @@ class Firebase {
     });
   }
   // User API
-
+  //add data
   addData(data, table, fn) {
     if(fn){
       this.collection(table).doc(data.id).set(data)
