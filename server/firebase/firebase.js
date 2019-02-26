@@ -50,9 +50,9 @@ class Firebase {
   }
   // User API
 
-  //add user
-  addUser(data) {
-    this.collection("users").doc(data.user_id).set(data)
+  addData(data, table, fn) {
+    if(fn){
+      this.collection(table).doc(data.id).set(data)
       .then(() => {
         console.log("New User was successfully added");
         return true;
@@ -61,6 +61,19 @@ class Firebase {
         console.error("Error adding document: ", error);
         return false;
       })
+    }
+    else {
+      console.log("Failed to add data");
+      return false;
+    } 
+  }
+
+  //add user
+  addUser(data) {
+    if(data.hasOwnProperty("first_name")&&data.hasOwnProperty("last_name")&&data.hasOwnProperty("email"))
+      return true;
+    else
+      return false;
   }
 
   //edit user data
